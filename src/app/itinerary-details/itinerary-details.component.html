@@ -1,0 +1,22 @@
+<nav class="navbar navbar-light bg-light ">  
+  <span class="navbar-brand">Itinerário da unidade de transporte</span>
+</nav>
+<div class="container">
+  <table datatable *ngIf="itineraryList" class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let local of itineraryList">
+        <td>Ponto: {{local.ponto}}</td>
+        <td>
+          <a href="https://www.google.com/maps/?q={{local.value.lat}},{{local.value.lng}}" 
+            target="_blank">Abrir Google Maps</a>
+        </td>            
+      </tr>
+    </tbody>
+</table>
+</div>
