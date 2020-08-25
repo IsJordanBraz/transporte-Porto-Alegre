@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ApiService } from '../api.service';
+import { DefaultApiService } from './../../shared/default-api.service';
 
 @Component({
   selector: 'app-bus-list',
@@ -11,12 +11,12 @@ export class BusListComponent implements OnInit{
   busList: Array<any>;
 
   constructor(
-    private apiService: ApiService,
+    private apiService: DefaultApiService,
   ) { }
 
-  ngOnInit() {
-    this.apiService.getBusList().subscribe((data: any[])=>{
+  ngOnInit(): void {
+    this.apiService.getBusList().subscribe((data: any[]) => {
       this.busList = data;
-    })  
+    });
   }
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ApiService } from '../api.service';
-
+import { DefaultApiService } from './../../shared/default-api.service';
 
 @Component({
   selector: 'app-itinerary-details',
@@ -10,20 +9,18 @@ import { ApiService } from '../api.service';
   styleUrls: ['./itinerary-details.component.css']
 })
 export class ItineraryDetailsComponent implements OnInit{
+
   itineraryList: Array<any>;
 
   constructor(
-    private apiService: ApiService,
+    private defaultApi: DefaultApiService,
     private route: ActivatedRoute,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.apiService.getCoordinates(params.get('itineraryID')).subscribe((data: any[])=>{
-        let mapped = Object.keys(data).map(key => ({ponto: key, value: data[key]}));       
-        mapped.splice(mapped.length-3, 3); 
-        this.itineraryList = mapped;       
-      }); 
-    });  
+      this.defaultApi.getCoordinates(params.get('itineraryID')).subscribe((data: any[]) => {
+      });
+    });
   }
 }

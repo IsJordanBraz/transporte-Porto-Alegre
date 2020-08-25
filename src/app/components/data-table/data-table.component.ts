@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-data-table',
@@ -6,14 +6,9 @@ import { Component, OnInit,Input } from '@angular/core';
   styleUrls: ['./data-table.component.css']
 })
 export class DataTableComponent implements OnInit {
-  @Input() dataList;
-  dtOptions: DataTables.Settings = {};
 
   constructor() { }
 
   ngOnInit(): void {
-    this.dtOptions = {
-      pagingType: 'full_numbers'
-    };
   }
 }
