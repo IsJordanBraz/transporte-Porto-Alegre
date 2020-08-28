@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DefaultApiService } from './../../shared/default-api.service';
+import { DefaultApiService } from '../../shared/service/default-api.service';
 
 @Component({
   selector: 'app-lot-list',
@@ -9,13 +9,11 @@ import { DefaultApiService } from './../../shared/default-api.service';
 })
 export class LotListComponent implements OnInit{
 
-  lotList: Array<any>;
-
-  constructor( private defaultApi: DefaultApiService ) { }
+  constructor(private defaultApiService: DefaultApiService) { }
 
   ngOnInit(): void {
-    this.defaultApi.getLotList().subscribe(( data: any[]) => {
-      this.lotList = data;
-    });
+    this.defaultApiService.getLotList().subscribe( data =>
+      this.defaultApiService.emitirEvento.emit(data)
+    );
   }
 }

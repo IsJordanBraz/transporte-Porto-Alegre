@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DefaultApiService } from './../../shared/default-api.service';
+import { DefaultApiService } from '../../shared/service/default-api.service';
 
 @Component({
   selector: 'app-bus-list',
@@ -8,15 +8,12 @@ import { DefaultApiService } from './../../shared/default-api.service';
   styleUrls: ['./bus-list.component.css']
 })
 export class BusListComponent implements OnInit{
-  busList: Array<any>;
 
-  constructor(
-    private apiService: DefaultApiService,
-  ) { }
+  constructor(private defaultApiService: DefaultApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getBusList().subscribe((data: any[]) => {
-      this.busList = data;
-    });
+    this.defaultApiService.getBusList().subscribe( data =>
+      this.defaultApiService.emitirEvento.emit(data)
+    );
   }
 }

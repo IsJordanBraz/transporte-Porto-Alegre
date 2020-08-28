@@ -1,0 +1,10 @@
+table {
+  width: 100%;
+}
+
+@media(min-width: 768px) {
+  .mat-table .mat-cell:last-child{
+    padding-left: 1em;
+    word-break: break-all;
+  }
+}

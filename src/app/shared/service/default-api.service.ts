@@ -1,14 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DefaultApiService {
 
-  constructor(private http: HttpClient) { }
+  emitirEvento = new EventEmitter<any>();
+
+  constructor(private http: HttpClient) {
+    console.log('service');
+  }
 
   getBusList(): any {
     return this.http.get(environment.busUrl);
@@ -16,7 +20,7 @@ export class DefaultApiService {
   getLotList(): any {
     return this.http.get(environment.lotUrl);
   }
-  getCoordinates(itineraryID): any {
+  getCoordinates(itineraryID: string): any {
     return this.http.get(environment.itineraryUrl + itineraryID);
   }
 }
